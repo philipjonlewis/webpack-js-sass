@@ -1,5 +1,5 @@
-# webpack-ts-sass-ejs
+# webpack-js-sass
 
-Webpack Template - Typescript + Sass +EJS
-# webpack-ts-sass-ejs
+Webpack Template - JS + Sass +EJS
+
 # webpack-js-sass
