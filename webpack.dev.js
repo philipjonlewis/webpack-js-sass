@@ -4,6 +4,8 @@ const { merge } = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
 
+
+
 const { indexPage, aboutPage, contactPage } = require("./siteReferences");
 
 module.exports = merge(common, {
