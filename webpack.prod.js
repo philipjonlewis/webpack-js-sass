@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -59,6 +60,9 @@ module.exports = merge(common, {
       path: path.join(__dirname, "./src/views/partials/footer.ejs"),
       location: "footer",
       template_filename: "*",
+    }),
+    new CompressionPlugin({
+      algorithm: "gzip",
     }),
   ],
   module: {
