@@ -2,8 +2,8 @@ import "./sass/style.scss";
 
 
 
-const btn = document.querySelector(".sample");
+const indexBtn = document.querySelector(".index-button");
 
-btn.addEventListener("click", () => {
-  console.log("sample");
+indexBtn.addEventListener("click", () => {
+  console.log("This is from index js");
 });

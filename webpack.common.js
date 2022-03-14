@@ -3,7 +3,9 @@ const path = require("path");
 module.exports = {
   entry: {
     main: "./src/index.js",
-    vendor : "./src/vendors/vendor.js"
+    about: "./src/js/about.js",
+    contact: "./src/js/contact.js",
+    vendor: "./src/vendors/vendor.js",
   },
   module: {
     rules: [
