@@ -11,6 +11,12 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
+const htmlMinifyOptions = {
+  removeAttributeQuotes: true,
+  collapseWhitespace: true,
+  removeComments: true,
+};
+
 module.exports = merge(common, {
   mode: "production",
   output: {
@@ -24,29 +30,17 @@ module.exports = merge(common, {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./src/views/index.ejs",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true,
-        },
+        minify: htmlMinifyOptions,
       }),
       new HtmlWebpackPlugin({
         filename: "about.html",
         template: "./src/views/pages/about.ejs",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true,
-        },
+        minify: htmlMinifyOptions,
       }),
       new HtmlWebpackPlugin({
         filename: "contact.html",
         template: "./src/views/pages/contact.ejs",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true,
-        },
+        minify: htmlMinifyOptions,
       }),
       new ImageMinimizerPlugin({
         minimizer: {
@@ -58,23 +52,6 @@ module.exports = merge(common, {
               ["gifsicle", { interlaced: true }],
               ["jpegtran", { progressive: true }],
               ["optipng", { optimizationLevel: 5 }],
-              // Svgo configuration here https://github.com/svg/svgo#configuration
-              [
-                "svgo",
-                {
-                  name: 'preset-default',
-                  params: {
-                    overrides: {
-                      // customize plugin options
-                      convertShapeToPath: {
-                        convertArcs: true
-                      },
-                      // disable plugins
-                      convertPathData: false
-                    }
-                  }
-                }
-              ],
             ],
           },
         },
@@ -106,6 +83,20 @@ module.exports = merge(common, {
           MiniCssExtractPlugin.loader, //3. Extract css into files
           "css-loader", //2. Turns css into commonjs
           "sass-loader", //1. Turns sass into css
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "file-loader",
+          },
+          {
+            loader: "svgo-loader",
+            options: {
+              configFile: "./scripts/svgo.config.js",
+            },
+          },
         ],
       },
     ],
