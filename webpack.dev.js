@@ -4,8 +4,6 @@ const { merge } = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackPartialsPlugin = require("html-webpack-partials-plugin");
 
-
-
 const { indexPage, aboutPage, contactPage } = require("./siteReferences");
 
 module.exports = merge(common, {
@@ -13,6 +11,16 @@ module.exports = merge(common, {
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    port: 3000,
+    open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin(indexPage),
@@ -28,7 +36,6 @@ module.exports = merge(common, {
       location: "footer",
       template_filename: "*",
     }),
-   
   ],
   module: {
     rules: [

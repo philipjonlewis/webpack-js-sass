@@ -1,4 +1,6 @@
 const path = require("path");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -11,7 +13,6 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
-
         use: ["html-loader"],
       },
       {
@@ -28,4 +29,5 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     assetModuleFilename: "images/[name].[hash][ext][query]",
   },
+  plugins: [new BundleAnalyzerPlugin()],
 };
