@@ -24,7 +24,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "[name].[hash].bundle.js",
+    filename: "[name][contenthash].js",
     path: path.resolve(__dirname, "dist"),
     assetModuleFilename: "images/[name].[hash][ext][query]",
   },
